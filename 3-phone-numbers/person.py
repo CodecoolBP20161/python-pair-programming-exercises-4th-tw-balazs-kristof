@@ -9,7 +9,7 @@ class Person():
     def is_phone_number_matching(self, input_phone_number):
         phone_number_1 = Person.normalize_phone_number(self._phone_number)
         phone_number_2 = Person.normalize_phone_number(input_phone_number)
-        return phone_number_1 == phone_number_2
+        return phone_number_1[:len(phone_number_2)] == phone_number_2
 
     def get_name(self):
         return self._name
