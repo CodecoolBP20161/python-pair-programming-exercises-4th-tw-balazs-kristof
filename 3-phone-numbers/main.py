@@ -1,15 +1,14 @@
 import csv
 import sys
 from person import Person
+import csv
 
 
 def open_csv(file_name):
     with open(file_name) as f:
-        data = []
-        for i in f:
-            i.rstrip("\n").split(",")
-            data.append(i)
-    print(data)
+        data = list(csv.reader(f))
+        data = [Person(i[0], i[1]) for i in data]
+    print(data[1]._phone_number)
     return data
 
 
@@ -26,7 +25,7 @@ def format_output(person):
     elif type(person) == Person:
         return "This number belongs to: {0}".format(person.get_name())
     else:
-        return "This number may belong to: {0}".format(", ".join(person))
+        return "This number may belong to: {0}".format(", ".join([i.get_name() for i in person]))
 
 
 def get_person_by_phone_number(person_list, user_input_phone_number):
